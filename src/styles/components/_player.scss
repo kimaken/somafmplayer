@@ -1,0 +1,296 @@
+.player-wrapper {
+	position: relative;
+	display: flex;
+	width: 700px;
+
+	@include playerStyle;
+
+	@include breakpoint($lg) {
+		width: 630px;
+	}
+
+	@include breakpoint($sm) {
+		flex-shrink: 0;
+		width: 100%;
+		min-height: 400px;
+		transform: translateX(100%);
+		transition: transform $transitionDuration;
+
+		.is-opened & {
+			transform: translateX(0);
+		}
+	}
+
+	&.empty {
+		.main-title {
+			opacity: 1;
+			visibility: visible;
+		}
+
+		.player {
+			opacity: 0;
+			visibility: hidden;
+		}
+	}
+}
+
+.main-title {
+	position: absolute;
+	top: 100px;
+	left: 0;
+	width: 100%;
+	text-align: center;
+	opacity: 0;
+	visibility: hidden;
+	transition: opacity $transitionDuration, visibility $transitionDuration;
+
+	@include breakpoint($sm) {
+		top: 20px;
+	}
+
+	h1,
+	h2,
+	h3 {
+		color: $color-1_light;
+		text-shadow: 1px 1px 0 $color-1_dark;
+	}
+
+	h1 {
+		font-weight: 700;
+		font-size: $fontSize-h1;
+
+		@include breakpoint($sm) {
+			font-size: $fontSize-h1 - 20px;
+		}
+	}
+
+	h2 {
+		font-size: $fontSize-h2;
+
+		@include breakpoint($sm) {
+			font-size: $fontSize-h2 - 15px;
+		}
+	}
+
+	h3 {
+		margin-top: 80px;
+		color: $color-1_light;
+		font-size: $fontSize-h3 + 20;
+
+		@include breakpoint($sm) {
+			margin-top: 40px;
+		}
+	}
+}
+
+.player {
+	position: relative;
+	width: 100%;
+	padding: 20px;
+	transition: opacity $transitionDuration, visibility $transitionDuration;
+
+	@include breakpoint($sm) {
+		padding: 10px;
+	}
+
+	.channel-info {
+		position: relative;
+		z-index: 1;
+		padding: 0 0 40px;
+
+		@include breakpoint($sm) {
+			padding: 0;
+		}
+	}
+
+	.image {
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: 0;
+		flex-shrink: 0;
+		width: 100%;
+		height: 100%;
+		background-size: cover;
+		background-position: center;
+		background-repeat: no-repeat;
+		border-radius: $borderRadius;
+		opacity: 0.1;
+
+		@include breakpoint($sm) {
+			border-radius: 0;
+		}
+	}
+
+	.info {
+		width: 100%;
+	}
+
+	.title {
+		padding: 0 0 5px;
+		font-size: $fontSize-big;
+		color: $color-white;
+	}
+
+	.genre {
+		padding: 0 0 8px;
+		font-size: $fontSize-small;
+		color: $color-3;
+	}
+
+	.description {
+		font-size: $fontSize-medium;
+		color: $color-2;
+
+		@include breakpoint($lg) {
+			font-size: $fontSize-small;
+		}
+	}
+
+	.current-track {
+		position: absolute;
+		bottom: calc(100% + 20px);
+		width: 100%;
+		text-align: center;
+		font-size: $fontSize-medium;
+		color: $color-white;
+
+		@include breakpoint($lg) {
+			font-size: $fontSize-small;
+		}
+	}
+
+	.controls {
+		position: absolute;
+		bottom: 20px;
+		left: 20px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: calc(100% - 40px);
+
+		@include breakpoint($sm) {
+			bottom: 70px;
+			left: 10px;
+			width: calc(100% - 20px);
+		}
+	}
+
+	.prev-button,
+	.next-button {
+		position: relative;
+		cursor: pointer;
+
+		&::before {
+			border-radius: 50%;
+			background: $color-1_dark;
+			@include icon(previous, 60px, $color-2_dark);
+
+			@include breakpoint($sm) {
+				@include iconSize(40px);
+			}
+		}
+	}
+
+	.next-button {
+		margin-left: 20px;
+
+		@include breakpoint($sm) {
+			margin-left: 10px;
+		}
+
+		&::before {
+			@include iconSymbol(next);
+		}
+	}
+
+	.volume {
+		position: relative;
+		width: 120px;
+		margin-left: 90px;
+
+		@include breakpoint($sm) {
+			width: 90px;
+		}
+
+		.mute {
+			position: absolute;
+			top: -10px;
+			left: -50px;
+			cursor: pointer;
+
+			@include breakpoint($sm) {
+				top: -8px;
+				left: -36px;
+			}
+
+			&::before {
+				background: $color-1_dark;
+				border-radius: 50%;
+				@include icon(volume, 35px, $color-2_dark);
+
+				@include breakpoint($sm) {
+					@include iconSize(25px);
+				}
+			}
+
+			&.is-muted::before {
+				@include iconSymbol(mute);
+			}
+		}
+
+		.volumebar {
+			width: 100%;
+			height: 15px;
+			background: $color-1_dark linear-gradient(0deg, $color-2_dark, $color-2_dark) no-repeat;
+			border: 2px solid $color-2_dark;
+			border-radius: $borderRadius;
+			cursor: pointer;
+
+			@include breakpoint($sm) {
+				height: 10px;
+			}
+		}
+	}
+
+	.play-button {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		z-index: 1;
+		margin: -80px 0 0 -80px;
+		cursor: pointer;
+
+		@include breakpoint($sm) {
+			margin: -100px 0 0 -60px;
+		}
+
+		&::before {
+			background: $color-1_dark;
+			border-radius: 50%;
+			@include icon(play, 160px, $color-2_dark);
+
+			@include breakpoint($sm) {
+				@include iconSize(120px);
+			}
+		}
+
+		.is-played &::before {
+			@include iconSymbol(pause);
+		}
+	}
+
+	#visualiser {
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: 0;
+		width: 100%;
+		height: 100%;
+		opacity: 0.7;
+
+		@include breakpoint($sm) {
+			display: none;
+		}
+	}
+}

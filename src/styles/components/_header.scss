@@ -1,0 +1,57 @@
+.header {
+	@include breakpoint($sm) {
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: 30;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		width: 100%;
+		padding: 10px;
+		border-bottom: 1px solid $color-1_dark;
+	}
+}
+
+.mobile-title {
+	display: none;
+	color: $color-white;
+
+	@include breakpoint($sm) {
+		display: block;
+	}
+
+	.name {
+		font-size: $fontSize-medium;
+		font-weight: 700;
+	}
+
+	.link {
+		font-size: $fontSize-small;
+	}
+}
+
+.channels-button {
+	position: absolute;
+	top: 11px;
+	right: 15px;
+	z-index: 21;
+	display: none;
+	transition: transform $transitionDuration;
+
+	&::before {
+		@include icon(menu, 30px, $color-white);
+	}
+
+	&.is-opened::before {
+		@include icon(close, 30px, $color-white);
+	}
+
+	@include breakpoint($md) {
+		display: block;
+	}
+
+	@include breakpoint($sm) {
+		position: static;
+	}
+}

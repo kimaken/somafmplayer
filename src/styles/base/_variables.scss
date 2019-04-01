@@ -1,0 +1,41 @@
+//______COLORS______
+$color-1 				: #3a4763;
+$color-1_dark 			: darken($color-1, 7%);
+$color-1_light 			: lighten($color-1, 7%);
+$color-1_lighter		: lighten($color-1, 21%);
+
+$color-2 				: #b0c2e6;
+$color-2_dark 			: darken($color-2, 14%);
+$color-2_light 			: lighten($color-2, 14%);
+
+$color-3 				: #ec8585;
+$color-3_dark			: darken($color-3, 14%);
+$color-3_light 			: lighten($color-3, 14%);
+
+$color-4 				: #8180c5;
+
+$color-white			: #fff;
+$color-black 			: #111;
+
+//______FONTS______
+$font-main 				: 'Roboto', sans-serif;
+
+$fontSize-smaller 		: 10px;
+$fontSize-small 		: 14px;
+$fontSize-medium 		: 18px;
+$fontSize-big 			: 22px;
+$fontSize-bigger 		: 26px;
+$fontSize-h1 			: 60px;
+$fontSize-h2 			: 50px;
+$fontSize-h3 			: 40px;
+
+//______OTHER______
+$transitionDuration 	: 0.3s;
+$transitionDelay 		: 0.3s;
+
+$borderRadius 			: 10px;
+
+$xs						: 320px;
+$sm						: 767px;
+$md						: 1024px;
+$lg						: 1280px;

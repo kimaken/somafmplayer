@@ -1,0 +1,57 @@
+@import "./base/_reset.scss";
+@import "./base/_fonts.scss";
+@import "./base/_variables.scss";
+@import "./base/_mixins.scss";
+
+@import "./components/_preloader.scss";
+@import "./components/_header.scss";
+@import "./components/_channels.scss";
+@import "./components/_player.scss";
+
+body {
+	font: 400 #{$fontSize-small}/1.2 $font-main;
+	letter-spacing: 0.03em;
+	color: $color-black;
+	background: linear-gradient(115deg, #b9d4f2 0%, #f4d2e2 100%) no-repeat;
+	background-attachment: fixed;
+
+	@include breakpoint($sm) {
+		background: $color-1;
+	}
+}
+
+#app {
+	display: flex;
+	height: 100vh;
+}
+
+.wrapper {
+	position: relative;
+	display: flex;
+	height: 700px;
+	margin: auto;
+	border-radius: $borderRadius;
+
+	@include breakpoint($lg) {
+		height: 630px;
+	}
+
+	@include breakpoint($md) {
+		overflow-x: hidden;
+
+		.is-opened & {
+			overflow-y: hidden;
+		}
+
+		@include boxShadow;
+	}
+
+	@include breakpoint($sm) {
+		flex-direction: row-reverse;
+		width: 100%;
+		height: 100vh;
+		padding: 58px 0 0;
+		border-radius: 0;
+		transition: padding-bottom 0.3s;
+	}
+}

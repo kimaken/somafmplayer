@@ -1,0 +1,101 @@
+@mixin iconSymbol($iconSymbol) {
+	$itemContent: "";
+
+	@if $iconSymbol == mute {
+		$itemContent: "\f100";
+	}
+	@else if $iconSymbol == volume {
+		$itemContent: "\f101";
+	}
+	@else if $iconSymbol == next {
+		$itemContent: "\f102";
+	}
+	@else if $iconSymbol == previous {
+		$itemContent: "\f103";
+	}
+	@else if $iconSymbol == pause {
+		$itemContent: "\f104";
+	}
+	@else if $iconSymbol == play {
+		$itemContent: "\f105";
+	}
+	@else if $iconSymbol == menu {
+		$itemContent: "\f106";
+	}
+	@else if $iconSymbol == close {
+		$itemContent: "\f107";
+	}
+	@else if $iconSymbol == search {
+		$itemContent: "\f108";
+	}
+
+	content: $itemContent;
+}
+
+@mixin iconSize($size) {
+	width: $size;
+	height: $size;
+	font-size: $size;
+}
+
+@mixin icon($item, $size: $fontSize-bigger, $color: $color-white) {
+	display: inline-block;
+	font-family: "Flaticon";
+	font-weight: normal;
+	font-style: normal;
+	font-variant: normal;
+	line-height: 1;
+	text-decoration: inherit;
+	text-rendering: optimizeLegibility;
+	text-transform: none;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-font-smoothing: antialiased;
+	font-smoothing: antialiased;
+	color: $color;
+
+	@include iconSymbol($item);
+	@include iconSize($size);
+}
+
+@mixin breakpoint($bp) {
+	@media (max-width: $bp) {
+		@content;
+	}
+}
+
+@mixin playButton($size: 80px) {
+	&::before {
+		@include icon(play, $size);
+	}
+
+	&.is-played::before,
+	.is-played &::before {
+		@include icon(pause, $size);
+	}
+}
+
+@mixin boxShadow($value1: 0, $value2: 0, $value3: 5px, $value4: 0, $opacity: 0.8) {
+	@if $value1 == none {
+		box-shadow: none;
+	}
+	@else {
+		box-shadow: $value1 $value2 $value3 $value4 rgba($color-black, $opacity);
+	}
+}
+
+@mixin playerStyle() {
+	overflow: hidden;
+	background: $color-1;
+	border: 1px solid $color-1_dark;
+	border-radius: $borderRadius;
+	@include boxShadow;
+
+	@include breakpoint($md) {
+		@include boxShadow(none);
+	}
+
+	@include breakpoint($sm) {
+		border: none;
+		border-radius: 0;
+	}
+}

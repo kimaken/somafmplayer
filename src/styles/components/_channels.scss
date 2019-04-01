@@ -1,0 +1,201 @@
+.channels-wrapper {
+	position: relative;
+	overflow-y: hidden;
+	width: 370px;
+	height: 100%;
+	margin-right: 20px;
+
+	@include playerStyle;
+
+	@include breakpoint($lg) {
+		width: 300px;
+	}
+
+	@include breakpoint($md) {
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: 20;
+		margin: 0;
+		border-top-right-radius: 0;
+		border-bottom-right-radius: 0;
+		transform: translateX(calc(-100% - 5px));
+		transition: transform $transitionDuration;
+
+		.is-opened & {
+			transform: translateX(0);
+		}
+
+		@include boxShadow(1px, 0, 5px, -1px);
+	}
+
+	@include breakpoint($sm) {
+		position: relative;
+		right: 0;
+		flex-shrink: 0;
+		width: calc(100% + 1px);
+		border-left: 1px solid $color-1_dark;
+		border-radius: 0;
+		transform: translateX(100%);
+
+		@include boxShadow(none);
+	}
+}
+
+.channels-content {
+	position: relative;
+	overflow-y: hidden;
+	height: 100%;
+
+	@include breakpoint($md) {
+		overflow-y: auto;
+	}
+}
+
+.channel {
+	min-height: 100px;
+	padding-right: 18px;
+	cursor: pointer;
+
+	@include breakpoint($lg) {
+		min-height: 80px;
+	}
+
+	@include breakpoint($sm) {
+		min-height: 70px;
+		padding-right: 5px;
+	}
+
+	&:not(:last-child) {
+		border-bottom: 1px solid $color-1_dark;
+	}
+
+	.inner {
+		position: relative;
+		overflow: hidden;
+		display: flex;
+		align-items: center;
+		padding: 10px;
+
+		@include breakpoint($lg) {
+			padding: 15px 15px 16px;
+		}
+
+		@include breakpoint($sm) {
+			padding: 10px;
+		}
+	}
+
+	&.current,
+	&:hover {
+		background: $color_1_dark;
+
+		.image::before {
+			opacity: 1;
+		}
+	}
+
+	.image {
+		position: relative;
+		overflow: hidden;
+		flex-shrink: 0;
+		width: 78px;
+		height: 78px;
+		background-size: 60px;
+		background-position: center;
+		background-repeat: no-repeat;
+		border-radius: $borderRadius;
+		transition: background-size $transitionDuration;
+
+		@include breakpoint($lg) {
+			width: 58px;
+			height: 58px;
+		}
+
+		&.loaded {
+			background-size: 0;
+
+			img {
+				opacity: 1;
+			}
+		}
+
+		img {
+		    position: absolute;
+		    top: 0;
+		    left: 0;
+		    width: 100%;
+		    height: 100%;
+			border-radius: $borderRadius;
+			object-fit: cover;
+			opacity: 0;
+			transition: opacity $transitionDuration;
+		}
+	}
+
+	.play-button {
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: 1;
+		width: 100%;
+		height: 100%;
+	}
+
+	.info {
+		padding: 0 0 0 20px;
+	}
+
+	.title {
+		padding: 0 0 5px;
+		font-size: $fontSize-big;
+		color: $color-white;
+
+		@include breakpoint($lg) {
+			font-size: $fontSize-small;
+		}
+	}
+
+	.genre {
+		padding: 0 0 8px;
+		color: $color-3;
+	}
+
+	.description {
+		font-size: $fontSize-medium;
+		color: $color-2;
+	}
+}
+
+.scroll {
+	position: absolute;
+    top: -1px;
+    right: -1px;
+	z-index: 10;
+    width: 20px;
+    height: calc(100% + 2px);
+	background: $color-1_light;
+	border-radius: $borderRadius;
+	border: 1px solid $color-1_dark;
+
+	@include breakpoint($md) {
+		display: none;
+		width: 5px;
+		border-radius: 0;
+	}
+}
+
+.scrollbar {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100px;
+	background: $color-1_dark;
+	border-radius: $borderRadius;
+	cursor: pointer;
+
+	@include breakpoint($md) {
+		border-radius: 0;
+	}
+}

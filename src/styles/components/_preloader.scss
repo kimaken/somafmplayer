@@ -1,0 +1,26 @@
+.preloader {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 100;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 100%;
+	background: $color-white;
+
+	&::before {
+		content: "";
+		display: block;
+		background: url(../images/app-preloader.svg) no-repeat;
+		width: 120px;
+		height: 120px;
+		background-size: 120px;
+		background-position: center;
+	}
+
+	#app:not(.loading) & {
+		display: none;
+	}
+}
