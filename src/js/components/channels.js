@@ -24,7 +24,7 @@ export class Channels {
 	}
 
 	getChannelsData() {
-		fetch("http://api.somafm.com/channels.json")
+		fetch("https://api.somafm.com/channels.json")
 		.then((response) => response.json())
 		.then((data) => {
 			let _ = this;
@@ -90,7 +90,7 @@ export class Channels {
 	}
 
 	getChannelTracks(channel) {
-		return fetch(`http://api.somafm.com/songs/${channel}.json`)
+		return fetch(`https://api.somafm.com/songs/${channel}.json`)
 		.then((response) => response.json())
 		.then((data) => {
 			return data.songs;
